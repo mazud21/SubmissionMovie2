@@ -20,8 +20,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TabMovie"
+            android:name=".MainActivity$TabMovie"
             android:label="@string/title_activity_tab_movie"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity$TabMovieAdapter"
+            android:label="@string/title_activity_tab_movie_adapter"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
