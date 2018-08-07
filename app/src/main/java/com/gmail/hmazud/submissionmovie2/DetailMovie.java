@@ -38,7 +38,7 @@ public class DetailMovie extends AppCompatActivity {
         movieModel = gson.fromJson(data,MovieModel.class);
 
         Glide.with(this).load(BuildConfig.BASE_URL_IMG_500 +movieModel.getUrlImageCover()).into(imageViewCover);
-        Glide.with(this).load(BuildConfig.BASE_URL_IMG_185 +movieModel.getUrlImagePoster()).into(imageViewPoster);
+        //Glide.with(this).load(BuildConfig.BASE_URL_IMG_185 +movieModel.getUrlImagePoster()).into(imageViewPoster);
 
         textViewJudul.setText(movieModel.getTitle());
         textViewRilis.setText(movieModel.getRilis().substring(0,4));

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.gmail.hmazud.submissionmovie2.BuildConfig;
 import com.gmail.hmazud.submissionmovie2.DetailMovie;
 import com.gmail.hmazud.submissionmovie2.Model.MovieModel;
+import com.gmail.hmazud.submissionmovie2.Model.Result;
 import com.gmail.hmazud.submissionmovie2.R;
 
 import java.io.Serializable;
@@ -56,7 +57,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             public void onClick(View v) {
                 MovieModel movieModel = mData.get(position);
                 Intent intent = new Intent(context, DetailMovie.class);
-                intent.putExtra("data", (Serializable) movieModel);
+                intent.putExtra("data", movieModel);
                 context.startActivity(intent);
             }
         });
