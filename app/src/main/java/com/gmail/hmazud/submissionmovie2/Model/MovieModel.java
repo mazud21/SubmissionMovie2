@@ -34,7 +34,7 @@ public class MovieModel implements Parcelable {
 
     @SerializedName("vote_average")
     @Expose
-    private float rating;
+    private String rating;
 
     public int getId() {
         return id;
@@ -84,11 +84,11 @@ public class MovieModel implements Parcelable {
         this.urlImageCover = urlImageCover;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -106,7 +106,7 @@ public class MovieModel implements Parcelable {
         dest.writeString(this.rilis);
         dest.writeString(this.urlImagePoster);
         dest.writeString(this.urlImageCover);
-        dest.writeFloat(this.rating);
+        dest.writeString(this.rating);
     }
 
     public MovieModel() {
@@ -119,7 +119,7 @@ public class MovieModel implements Parcelable {
         this.rilis = in.readString();
         this.urlImagePoster = in.readString();
         this.urlImageCover = in.readString();
-        this.rating = in.readFloat();
+        this.rating = in.readString();
     }
 
     public static final Parcelable.Creator<MovieModel> CREATOR = new Parcelable.Creator<MovieModel>() {

@@ -18,7 +18,6 @@ public class DetailMovie extends AppCompatActivity {
     TextView textViewRilis;
     TextView textViewRating;
     TextView textViewJudul;
-    MovieModel movieModel;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -26,23 +25,33 @@ public class DetailMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
 
+        MovieModel movieModel = getIntent().getParcelableExtra("data");
+
+        String judul = movieModel.getTitle();
+        String deskripsi = movieModel.getOverview();
+        String rating = movieModel.getRating();
+        String rilis = movieModel.getRilis();
+
         imageViewCover = findViewById(R.id.image_cover);
         imageViewPoster = findViewById(R.id.image_poster);
-        textViewDeskripsi = findViewById(R.id.text_deskripsi);
+
+        Glide.with(this).load(BuildConfig.BASE_URL_IMG_185+movieModel.getUrlImagePoster()).into(imageViewPoster);
+        Glide.with(this).load(BuildConfig.BASE_URL_IMG_500+movieModel.getUrlImagePoster()).into(imageViewCover);
+
         textViewJudul = findViewById(R.id.text_judul);
+        textViewDeskripsi = findViewById(R.id.text_deskripsi);
         textViewRating = findViewById(R.id.text_rating);
         textViewRilis = findViewById(R.id.text_rilis);
 
-        Gson gson = new Gson();
-        String data = getIntent().getStringExtra("data");
-        movieModel = gson.fromJson(data,MovieModel.class);
-
-        Glide.with(this).load(BuildConfig.BASE_URL_IMG_500 +movieModel.getUrlImageCover()).into(imageViewCover);
-        //Glide.with(this).load(BuildConfig.BASE_URL_IMG_185 +movieModel.getUrlImagePoster()).into(imageViewPoster);
-
+        textViewJudul.setText(judul);
+        textViewDeskripsi.setText(deskripsi);
+        textViewRating.setText(rating);
+        textViewRilis.setText(rilis);
+/*
         textViewJudul.setText(movieModel.getTitle());
         textViewRilis.setText(movieModel.getRilis().substring(0,4));
         textViewRating.setText("Rating : " + movieModel.getRating());
         textViewDeskripsi.setText(movieModel.getOverview());
+*/
     }
 }
