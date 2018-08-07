@@ -26,7 +26,10 @@
         <activity
             android:name=".MainActivity$TabMovieAdapter"
             android:label="@string/title_activity_tab_movie_adapter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DetailMovie" />
+        <activity android:name=".NowPlaying" />
+        <activity android:name=".UpComing"></activity>
     </application>
 
 </manifest>
