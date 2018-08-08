@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailMovie" />
+        <activity android:name=".SearchMovie" />
         <activity android:name=".NowPlaying" />
         <activity android:name=".UpComing"></activity>
     </application>

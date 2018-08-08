@@ -48,9 +48,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                         .getUrlImagePoster())
                 .into(holder.imageViewCover);
 
+        String overview;
+        if (mData.get(position).getOverview().length() <= 30) {
+            overview = mData.get(position).getOverview();
+        } else {
+            overview = mData.get(position).getOverview().substring(0, 60) + "...";
+        }
+
         holder.textViewNama.setText(mData.get(position).getTitle());
         holder.textViewRilis.setText(mData.get(position).getRilis());
-        holder.textViewDeskripsi.setText(mData.get(position).getOverview());
+        holder.textViewDeskripsi.setText(overview);
 
         holder.cardView_layout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -39,7 +39,7 @@ public class UpComingFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
 
         InterfaceMovie interfaceMovie = ServiceMovie.getRetrofitInstance().create(InterfaceMovie.class);
-        retrofit2.Call<Result> resultCall = interfaceMovie.getUpcomingMovie(BuildConfig.API_KEY, "id");
+        retrofit2.Call<Result> resultCall = interfaceMovie.getUpcomingMovie(BuildConfig.API_KEY, "eng");
 
         resultCall.enqueue(new Callback<Result>() {
             @Override

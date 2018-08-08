@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -24,7 +23,6 @@ public class NowPlaying extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +31,10 @@ public class NowPlaying extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InterfaceMovie interfaceMovie = ServiceMovie.getRetrofitInstance().create(InterfaceMovie.class);
+        retrofit2.Call<Result> resultCall = interfaceMovie.getNowPlayingMovie(BuildConfig.API_KEY, "eng");
 
-        InterfaceMovie service = ServiceMovie.getRetrofitInstance().create(InterfaceMovie.class);
-        retrofit2.Call<Result> call = service.getNowPlayingMovie(BuildConfig.API_KEY, "id");
-        call.enqueue(new Callback<Result>() {
+        resultCall.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 generateMovieList(response.body().getResults());
@@ -53,11 +48,11 @@ public class NowPlaying extends AppCompatActivity {
         });
     }
 
-    private void generateMovieList(List<MovieModel> listResults){
+    private void generateMovieList(List<MovieModel> listResults) {
         recyclerView = findViewById(R.id.rv_now_playing);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MovieAdapter adapter = new MovieAdapter(listResults, this);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        MovieAdapter movieAdapter = new MovieAdapter(listResults, this);
+        recyclerView.setAdapter(movieAdapter);
     }
 }

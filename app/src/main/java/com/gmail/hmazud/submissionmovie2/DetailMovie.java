@@ -3,12 +3,12 @@ package com.gmail.hmazud.submissionmovie2;
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gmail.hmazud.submissionmovie2.Model.MovieModel;
-import com.google.gson.Gson;
 
 public class DetailMovie extends AppCompatActivity {
 
@@ -45,13 +45,8 @@ public class DetailMovie extends AppCompatActivity {
 
         textViewJudul.setText(judul);
         textViewDeskripsi.setText(deskripsi);
-        textViewRating.setText(rating);
+        textViewRating.setText("Rating : "+rating);
         textViewRilis.setText(rilis);
-/*
-        textViewJudul.setText(movieModel.getTitle());
-        textViewRilis.setText(movieModel.getRilis().substring(0,4));
-        textViewRating.setText("Rating : " + movieModel.getRating());
-        textViewDeskripsi.setText(movieModel.getOverview());
-*/
+
     }
 }
