@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SubmissionMovie2</string>
+    <string name="navigation_drawer_open">Buka navigation drawer</string>
+    <string name="navigation_drawer_close">Tutup navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="title_activity_tab_movie">TabMovie</string>
+    <string name="nowP">Sedang Diputar</string>
+    <string name="upC">Segera Tayang</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="conf">Pengaturan</string>
+    <string name="chg_lang">Ubah Bahasa</string>
+
+    <string name="search_btn">Cari</string>
+    <string name="search_input">Cari Film</string>
+    <string name="nama_movie">Film</string>
+    <string name="text_deksripsi">Deskripsi</string>
+    <string name="title_activity_detail_movie">Detail Film</string>
+    <string name="tahun_rilis">Tanggal Rilis</string>
+    <string name="rating">Rating</string>
+</resources>

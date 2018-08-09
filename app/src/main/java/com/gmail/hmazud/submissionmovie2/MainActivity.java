@@ -2,6 +2,7 @@ package com.gmail.hmazud.submissionmovie2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -103,7 +104,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,SearchMovie.class);
             startActivity(intent);
         } else if (id == R.id.nav_lang) {
-
+            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

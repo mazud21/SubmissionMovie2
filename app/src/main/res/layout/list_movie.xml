@@ -38,7 +38,7 @@
                 android:id="@+id/text_rilis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tahun Rilis"
+                android:text="@string/tahun_rilis"
                 android:layout_marginLeft="8dp"
                 />
 

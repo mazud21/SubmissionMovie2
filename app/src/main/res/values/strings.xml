@@ -2,30 +2,21 @@
     <string name="app_name">SubmissionMovie2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">hmazud@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_tab_movie">TabMovie</string>
     <string name="nowP">Now Playing</string>
     <string name="upC">Up Coming</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="conf">Configuration</string>
+    <string name="chg_lang">Change Language</string>
 
     <string name="search_btn">Search</string>
     <string name="search_input">Search Movie</string>
     <string name="nama_movie">Movie</string>
     <string name="text_deksripsi">Overview</string>
     <string name="title_activity_detail_movie">Detail Movie</string>
-    <string name="tahun_rilis">Tahun Rilis</string>
+    <string name="tahun_rilis">Release Date</string>
     <string name="rating">Rating</string>
     <string name="title_activity_main2">Main2Activity</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_tab_movie_adapter">TabMovieAdapter</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-
-
 </resources>
