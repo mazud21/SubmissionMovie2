@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Favorite</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_subtitle">hmazud@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="nowP">Now Playing</string>
+    <string name="upC">Up Coming</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="conf">Configuration</string>
+    <string name="chg_lang">Change Language</string>
+
+    <string name="search_btn">Search</string>
+    <string name="search_input">Search Movie</string>
+    <string name="nama_movie">Movie</string>
+    <string name="text_deksripsi">Overview</string>
+    <string name="title_activity_detail_movie">Detail Movie</string>
+    <string name="tahun_rilis">Release Date</string>
+    <string name="rating">Rating</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>
