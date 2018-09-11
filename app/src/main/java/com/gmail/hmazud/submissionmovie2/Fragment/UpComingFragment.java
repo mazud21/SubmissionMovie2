@@ -1,5 +1,6 @@
 package com.gmail.hmazud.submissionmovie2.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.gmail.hmazud.submissionmovie2.Adapter.MovieAdapter;
 import com.gmail.hmazud.submissionmovie2.BuildConfig;
@@ -25,8 +27,15 @@ import retrofit2.Response;
 
 public class UpComingFragment extends Fragment {
 
+    private Context context;
+
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+
+    private MovieAdapter movieAdapter;
+
+    private Call<Result> interfaceMovie;
+    private ServiceMovie serviceMovie = new ServiceMovie();
 
     public UpComingFragment() {
     }
@@ -34,34 +43,37 @@ public class UpComingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_up_coming, container, false);
+        View view = inflater.inflate(R.layout.fragment_up_coming, container, false);
+        context = view.getContext();
 
+        recyclerView = view.findViewById(R.id.rv_up_coming);
         progressBar = view.findViewById(R.id.progressBar);
 
-        InterfaceMovie interfaceMovie = ServiceMovie.getRetrofitInstance().create(InterfaceMovie.class);
-        retrofit2.Call<Result> resultCall = interfaceMovie.getUpcomingMovie(BuildConfig.API_KEY, "eng");
+        setupList();
+        loadData();
 
-        resultCall.enqueue(new Callback<Result>() {
+        return view;
+    }
+
+    private void setupList() {
+        movieAdapter = new MovieAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(movieAdapter);
+    }
+
+    private void loadData() {
+        interfaceMovie = serviceMovie.getService().getUpcomingMovie(BuildConfig.API_KEY,"eng");
+        interfaceMovie.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
-                generateMovieList(response.body().getResults(),view);
+                movieAdapter.replace(response.body().getResults());
                 progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
-
+                Toast.makeText(context, "Couldn't load Movies", Toast.LENGTH_SHORT).show();
             }
         });
-
-        return view;
-    }
-
-    private void generateMovieList(List<MovieModel> listResults, View view) {
-        recyclerView = view.findViewById(R.id.rv_up_coming);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-        MovieAdapter movieAdapter = new MovieAdapter(listResults, getContext());
-        recyclerView.setAdapter(movieAdapter);
     }
 }

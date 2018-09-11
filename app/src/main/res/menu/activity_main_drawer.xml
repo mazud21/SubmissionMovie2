@@ -7,23 +7,23 @@
         <item
             android:id="@+id/nav_np"
             android:icon="@drawable/ic_play_arrow_black_24dp"
-            android:title="Now Playing" />
+            android:title="@string/nowP" />
         <item
             android:id="@+id/nav_uc"
             android:icon="@drawable/ic_playlist_play_black_24dp"
-            android:title="Up Coming" />
+            android:title="@string/upC" />
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search_black_24dp"
-            android:title="Search Movie" />
+            android:title="@string/search_input" />
     </group>
 
-    <item android:title="Configuration">
+    <item android:title="@string/conf">
         <menu>
             <item
                 android:id="@+id/nav_lang"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Language Setting" />
+                android:title="@string/chg_lang" />
         </menu>
     </item>
 

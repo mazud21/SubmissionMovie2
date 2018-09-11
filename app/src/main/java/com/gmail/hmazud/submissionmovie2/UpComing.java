@@ -1,5 +1,6 @@
 package com.gmail.hmazud.submissionmovie2;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,23 +22,31 @@ import retrofit2.Response;
 
 public class UpComing extends AppCompatActivity {
 
+    private Context context;
+
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+
+    private MovieAdapter movieAdapter;
+
+    private Call<Result> interfaceMovie;
+    private ServiceMovie serviceMovie = new ServiceMovie();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_up_coming);
+        setContentView(R.layout.activity_now_playing);
 
+        recyclerView = findViewById(R.id.rv_now_playing);
         progressBar = findViewById(R.id.progressBar);
 
-        InterfaceMovie interfaceMovie = ServiceMovie.getRetrofitInstance().create(InterfaceMovie.class);
-        retrofit2.Call<Result> resultCall = interfaceMovie.getUpcomingMovie(BuildConfig.API_KEY, "eng");
+        setupList();
 
-        resultCall.enqueue(new Callback<Result>() {
+        interfaceMovie = serviceMovie.getService().getNowPlayingMovie(BuildConfig.API_KEY,"eng");
+        interfaceMovie.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
-                generateMovieList(response.body().getResults());
+                movieAdapter.replace(response.body().getResults());
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -48,11 +57,9 @@ public class UpComing extends AppCompatActivity {
         });
     }
 
-    private void generateMovieList(List<MovieModel> listResults) {
-        recyclerView = findViewById(R.id.rv_up_coming);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        MovieAdapter movieAdapter = new MovieAdapter(listResults, this);
+    private void setupList() {
+        movieAdapter = new MovieAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(movieAdapter);
     }
 }

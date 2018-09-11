@@ -1,10 +1,22 @@
 package com.gmail.hmazud.submissionmovie2.Model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import static android.provider.BaseColumns._ID;
+import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.getColumnDouble;
+import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.getColumnInt;
+import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.getColumnString;
+import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_BACKDROP;
+import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_OVERVIEW;
+import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_POSTER;
+import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_RELEASE_DATE;
+import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_TITLE;
+import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_VOTE;
 
 public class MovieModel implements Parcelable {
 
@@ -109,7 +121,14 @@ public class MovieModel implements Parcelable {
         dest.writeString(this.rating);
     }
 
-    public MovieModel() {
+    public MovieModel(Cursor cursor) {
+        this.id = getColumnInt(cursor, _ID);
+        this.title = getColumnString(cursor, COLUMN_TITLE);
+        this.urlImagePoster = getColumnString(cursor, COLUMN_POSTER);
+        this.urlImageCover = getColumnString(cursor, COLUMN_BACKDROP);
+        this.rilis = getColumnString(cursor, COLUMN_RELEASE_DATE);
+        this.rating = getColumnString(cursor, COLUMN_VOTE);
+        this.overview = getColumnString(cursor, COLUMN_OVERVIEW);
     }
 
     protected MovieModel(Parcel in) {

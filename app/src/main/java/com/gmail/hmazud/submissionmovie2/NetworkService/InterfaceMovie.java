@@ -4,11 +4,12 @@ import com.gmail.hmazud.submissionmovie2.Model.Result;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface InterfaceMovie {
     @GET("search/movie")
-    Call<Result> searchMovie(@Query("api_key") String api,
+    Call<Result> getSearchMovie(@Query("api_key") String api,
                              @Query("language") String lng,
                              @Query("query") String query);
 

@@ -2,6 +2,7 @@ package com.gmail.hmazud.submissionmovie2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.gmail.hmazud.submissionmovie2.Fragment.FavoriteFragment;
 import com.gmail.hmazud.submissionmovie2.Fragment.NowPlayingFragment;
 import com.gmail.hmazud.submissionmovie2.Fragment.UpComingFragment;
 
@@ -103,15 +105,14 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,SearchMovie.class);
             startActivity(intent);
         } else if (id == R.id.nav_lang) {
-
+            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 
     public class AdapterFragment extends FragmentStatePagerAdapter {
         public AdapterFragment(FragmentManager fm) {
@@ -126,6 +127,8 @@ public class MainActivity extends AppCompatActivity
                 fragment = new NowPlayingFragment();
             } else if (position == 1){
                 fragment = new UpComingFragment();
+            } else if (position == 2){
+                fragment = new FavoriteFragment();
             }
             return fragment;
         }
@@ -140,12 +143,15 @@ public class MainActivity extends AppCompatActivity
             if (position == 1){
                 name = getResources().getString(R.string.upC);
             }
+            if (position == 2){
+                name = getResources().getString(R.string.upC);
+            }
             return name;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
     }
 }

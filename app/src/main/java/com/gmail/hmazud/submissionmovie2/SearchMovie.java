@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.gmail.hmazud.submissionmovie2.Adapter.MovieAdapter;
 import com.gmail.hmazud.submissionmovie2.Model.MovieModel;
@@ -18,22 +19,40 @@ import com.gmail.hmazud.submissionmovie2.NetworkService.ServiceMovie;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchMovie extends AppCompatActivity {
 
+    public static final String MOVIE_TITLE = "movie_title";
+
+    EditText editText;
+    ProgressBar progressBar;
+    Button button;
     RecyclerView recyclerView;
+
+    private MovieAdapter movieAdapter;
+
+    private Call<Result> interfaceMovie;
+    private ServiceMovie serviceMovie = new ServiceMovie();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movie);
 
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
-        final EditText editText = findViewById(R.id.et_search);
-        Button button = findViewById(R.id.btn_search);
+        editText = findViewById(R.id.et_search);
+        progressBar = findViewById(R.id.progressBar);
+        button = findViewById(R.id.btn_search);
+        recyclerView = findViewById(R.id.rv_search);
+
+        setupList();
+
+        //final String movie_title = getIntent().getStringExtra(MOVIE_TITLE);
+        //loadData(movie_title);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,32 +64,33 @@ public class SearchMovie extends AppCompatActivity {
                         if (TextUtils.isEmpty(s)) {
                             editText.setError("Can't Empty !");
                         } else {
-                            InterfaceMovie interfaceMovie = ServiceMovie.getRetrofitInstance().create(InterfaceMovie.class);
-                            retrofit2.Call<Result> resultCall = interfaceMovie.searchMovie(BuildConfig.API_KEY, "eng",s);
-
-                            resultCall.enqueue(new Callback<Result>() {
-                                @Override
-                                public void onResponse(Call<Result> call, Response<Result> response) {
-                                    generateMovieList(response.body().getResults());
-                                    progressBar.setVisibility(View.GONE);
-                                }
-
-                                @Override
-                                public void onFailure(Call<Result> call, Throwable t) {
-
-                                }
-                            });
+                            loadData(s);
                         }
                 }
             }
         });
+
+        //setupList();
     }
 
-    private void generateMovieList(List<MovieModel> listResults) {
-        recyclerView = findViewById(R.id.rv_search);
+    private void setupList() {
+        movieAdapter = new MovieAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        MovieAdapter movieAdapter = new MovieAdapter(listResults, this);
         recyclerView.setAdapter(movieAdapter);
+    }
+
+    private void loadData(String s) {
+        interfaceMovie = serviceMovie.getService().getSearchMovie(BuildConfig.API_KEY,"eng",s);
+        interfaceMovie.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+                movieAdapter.replace(response.body().getResults());
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+
+            }
+        });
     }
 }

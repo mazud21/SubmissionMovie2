@@ -17,21 +17,34 @@ import com.gmail.hmazud.submissionmovie2.DetailMovie;
 import com.gmail.hmazud.submissionmovie2.Model.MovieModel;
 import com.gmail.hmazud.submissionmovie2.Model.Result;
 import com.gmail.hmazud.submissionmovie2.R;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    private List<MovieModel> mData;
-    private Context context;
+    private List<MovieModel> mData = new ArrayList<>();
 
-    public MovieAdapter(List<MovieModel> mData, Context context) {
-        this.context = context;
-        this.mData = mData;
+    public MovieAdapter() {
     }
 
-    //======start recyclerview ======
+    public void clear() {
+        mData.clear();
+        notifyDataSetChanged();
+    }
+
+    public void replace(List<MovieModel> item) {
+        mData.clear();
+        mData = item;
+        notifyDataSetChanged();
+    }
+
+    public void update(List<MovieModel> item) {
+        mData.addAll(item);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -41,12 +54,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context)
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        Glide.with(holder.itemView.getContext())
                 .load(BuildConfig.BASE_URL_IMG_185 + mData
                         .get(position)
                         .getUrlImagePoster())
-                .into(holder.imageViewCover);
+                .into(holder.imageViewPoster);
 
         String overview;
         if (mData.get(position).getOverview().length() <= 30) {
@@ -63,9 +76,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 MovieModel movieModel = mData.get(position);
-                Intent intent = new Intent(context, DetailMovie.class);
+                Intent intent = new Intent(holder.itemView.getContext(), DetailMovie.class);
                 intent.putExtra("data", movieModel);
-                context.startActivity(intent);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
@@ -79,7 +92,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         private TextView textViewNama;
         private TextView textViewDeskripsi;
         private TextView textViewRilis;
-        private ImageView imageViewCover;
+        private ImageView imageViewPoster;
         private CardView cardView_layout;
 
         public ViewHolder(View itemView) {
@@ -87,7 +100,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             textViewNama = itemView.findViewById(R.id.text_nama);
             textViewDeskripsi = itemView.findViewById(R.id.text_deskripsi);
             textViewRilis = itemView.findViewById(R.id.text_rilis);
-            imageViewCover = itemView.findViewById(R.id.imageView);
+            imageViewPoster = itemView.findViewById(R.id.img_poster);
             cardView_layout = itemView.findViewById(R.id.layout);
         }
     }

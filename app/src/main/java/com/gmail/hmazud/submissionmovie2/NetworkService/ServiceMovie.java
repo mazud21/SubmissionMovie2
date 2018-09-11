@@ -2,21 +2,50 @@ package com.gmail.hmazud.submissionmovie2.NetworkService;
 
 import com.gmail.hmazud.submissionmovie2.BuildConfig;
 
+import java.io.IOException;
+
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceMovie {
-    private static Retrofit retrofit;
-    private static final String BASE_URL = BuildConfig.BASE_URL;
 
-    public static Retrofit getRetrofitInstance(){
-        if (retrofit == null){
-            retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
+    private InterfaceMovie interfaceMovie;
 
-        return retrofit;
+    public ServiceMovie() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request request = chain.request();
+                        HttpUrl httpUrl = request.url()
+                                .newBuilder()
+                                .addQueryParameter("api_key", BuildConfig.API_KEY)
+                                .build();
+
+                        request = request.newBuilder()
+                                .url(httpUrl)
+                                .build();
+
+                        return chain.proceed(request);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(BuildConfig.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        interfaceMovie = retrofit.create(InterfaceMovie.class);
+    }
+
+    public InterfaceMovie getService() {
+        return interfaceMovie;
     }
 }
