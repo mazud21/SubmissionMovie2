@@ -1,4 +1,4 @@
-package com.gmail.hmazud.submissionmovie2.Model;
+package com.gmail.hmazud.submissionmovie2.model;
 
 import android.database.Cursor;
 import android.os.Parcel;
@@ -8,7 +8,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import static android.provider.BaseColumns._ID;
-import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.getColumnDouble;
 import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.getColumnInt;
 import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.getColumnString;
 import static com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns.COLUMN_BACKDROP;
@@ -68,32 +67,16 @@ public class MovieModel implements Parcelable {
         return overview;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
-
     public String getRilis() {
         return rilis;
-    }
-
-    public void setRilis(String rilis) {
-        this.rilis = rilis;
     }
 
     public String getUrlImagePoster() {
         return urlImagePoster;
     }
 
-    public void setUrlImagePoster(String urlImagePoster) {
-        this.urlImagePoster = urlImagePoster;
-    }
-
     public String getUrlImageCover() {
         return urlImageCover;
-    }
-
-    public void setUrlImageCover(String urlImageCover) {
-        this.urlImageCover = urlImageCover;
     }
 
     public String getRating() {

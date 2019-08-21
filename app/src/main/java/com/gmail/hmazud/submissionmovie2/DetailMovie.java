@@ -6,24 +6,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.gmail.hmazud.submissionmovie2.Model.MovieModel;
-import com.gmail.hmazud.submissionmovie2.Model.Result;
-import com.gmail.hmazud.submissionmovie2.NetworkService.ServiceMovie;
+import com.gmail.hmazud.submissionmovie2.model.MovieModel;
 import com.gmail.hmazud.submissionmovie2.database.FavoriteHelper;
 import com.gmail.hmazud.submissionmovie2.provider.FavoriteColumns;
-import com.google.gson.Gson;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.CONTENT_URI;
 
@@ -39,10 +30,6 @@ public class DetailMovie extends AppCompatActivity {
     ImageView imageViewCover;
     ImageView imageViewPoster;
     ImageView imageViewFav;
-
-    private Call<Result> interfaceMovie;
-    private ServiceMovie serviceMovie = new ServiceMovie();
-    private Gson gson = new Gson();
 
     private FavoriteHelper favoriteHelper;
     private Boolean isFavorite = false;

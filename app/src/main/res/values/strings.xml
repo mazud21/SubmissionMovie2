@@ -7,6 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="nowP">Now Playing</string>
     <string name="upC">Up Coming</string>
+    <string name="fav">Favorite</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="conf">Configuration</string>
     <string name="chg_lang">Change Language</string>
@@ -19,7 +20,16 @@
     <string name="tahun_rilis">Release Date</string>
     <string name="rating">Rating</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="remindApps">Lets Check The Movie Now</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appwidget_text">FAVORITE LIST MOVIE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_settings_service">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="dailyRemind">daily_remind</string>
+    <string name="upcomingRemind">upcoming_remind</string>
+    <string name="changeLang">change_language</string>
 </resources>

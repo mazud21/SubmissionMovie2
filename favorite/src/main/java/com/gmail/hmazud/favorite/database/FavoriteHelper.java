@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.gmail.hmazud.favorite.provider.FavoriteColumns;
-
 import static android.provider.BaseColumns._ID;
 
 public class FavoriteHelper {

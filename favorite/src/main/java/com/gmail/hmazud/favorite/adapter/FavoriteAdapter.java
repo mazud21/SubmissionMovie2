@@ -16,9 +16,6 @@ import com.gmail.hmazud.favorite.DetailMovie;
 import com.gmail.hmazud.favorite.R;
 import com.gmail.hmazud.favorite.model.FavoriteModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import static com.gmail.hmazud.favorite.provider.DatabaseContract.CONTENT_URI;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
@@ -63,32 +60,27 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.img_poster)
-        ImageView iv_poster;
-
-        @BindView(R.id.text_rilis)
-        TextView tv_rilis;
-
-        @BindView(R.id.text_nama)
-        TextView tv_title;
-
-        @BindView(R.id.text_deskripsi)
-        TextView tv_overview;
-
+        private TextView tv_title;
+        private TextView tv_overview;
+        private TextView tv_rilis;
+        private ImageView img_poster;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            tv_title = itemView.findViewById(R.id.text_nama);
+            tv_overview = itemView.findViewById(R.id.text_deskripsi);
+            tv_rilis = itemView.findViewById(R.id.text_rilis);
+            img_poster = itemView.findViewById(R.id.img_poster);
         }
 
         public void bind(final FavoriteModel item) {
             tv_title.setText(item.getTitle());
-            tv_rilis.setText(item.getRilis());
             tv_overview.setText(item.getOverview());
+            tv_rilis.setText(item.getRilis());
 
             Glide.with(itemView.getContext())
                     .load(BuildConfig.BASE_URL_IMG_185 + item.getUrlImagePoster())
-                    .into(iv_poster);
+                    .into(img_poster);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

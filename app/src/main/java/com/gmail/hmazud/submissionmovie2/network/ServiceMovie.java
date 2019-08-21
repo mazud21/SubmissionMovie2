@@ -1,4 +1,4 @@
-package com.gmail.hmazud.submissionmovie2.NetworkService;
+package com.gmail.hmazud.submissionmovie2.network;
 
 import com.gmail.hmazud.submissionmovie2.BuildConfig;
 

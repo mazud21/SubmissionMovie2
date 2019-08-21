@@ -3,6 +3,8 @@ package com.gmail.hmazud.favorite.provider;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.gmail.hmazud.favorite.database.FavoriteColumns;
+
 public class DatabaseContract {
 
     public static final String AUTHORITY = "com.gmail.hmazud.submissionmovie2";

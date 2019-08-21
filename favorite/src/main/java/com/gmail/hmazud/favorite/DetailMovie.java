@@ -10,28 +10,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gmail.hmazud.favorite.model.FavoriteModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class DetailMovie extends AppCompatActivity {
 
-    @BindView(R.id.img_poster)
-    ImageView iv_poster;
-
-    @BindView(R.id.image_cover)
-    ImageView iv_backdrop;
-
-    @BindView(R.id.text_nama)
     TextView tv_title;
-
-    @BindView(R.id.text_rilis)
     TextView tv_release_date;
-
-    @BindView(R.id.text_rating)
     TextView tv_vote;
-
-    @BindView(R.id.text_deskripsi)
     TextView tv_overview;
+    ImageView img_poster;
+    ImageView img_cover;
 
     private FavoriteModel item;
 
@@ -39,10 +25,29 @@ public class DetailMovie extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
-        ButterKnife.bind(this);
+
+        tv_title = findViewById(R.id.text_nama);
+        tv_overview = findViewById(R.id.text_deskripsi);
+        tv_release_date = findViewById(R.id.text_rilis);
+        tv_vote = findViewById(R.id.text_rating);
+
+        img_poster = findViewById(R.id.img_poster);
+        img_cover = findViewById(R.id.image_cover);
 
         loadData();
-        storeData();
+
+        tv_title.setText(item.getTitle());
+        tv_overview.setText(item.getOverview());
+        tv_release_date.setText(item.getRilis());
+        tv_vote.setText(item.getRating());
+
+        Glide.with(this)
+                .load(BuildConfig.BASE_URL_IMG_185 + item.getUrlImagePoster())
+                .into(img_poster);
+
+        Glide.with(this)
+                .load(BuildConfig.BASE_URL_IMG_500 + item.getUrlImageCover())
+                .into(img_cover);
     }
 
     private void loadData() {
@@ -60,22 +65,5 @@ public class DetailMovie extends AppCompatActivity {
             if (cursor.moveToFirst()) item = new FavoriteModel(cursor);
             cursor.close();
         }
-    }
-
-    private void storeData() {
-        if (item == null) return;
-
-        Glide.with(this)
-                .load(BuildConfig.BASE_URL_IMG_185 + item.getUrlImagePoster())
-                .into(iv_poster);
-
-        Glide.with(this)
-                .load(BuildConfig.BASE_URL_IMG_500 + item.getUrlImageCover())
-                .into(iv_backdrop);
-
-        tv_title.setText(item.getTitle());
-        tv_release_date.setText(item.getRilis());
-        tv_vote.setText(item.getRating());
-        tv_overview.setText(item.getOverview());
     }
 }

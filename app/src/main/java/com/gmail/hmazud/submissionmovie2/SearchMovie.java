@@ -9,18 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.gmail.hmazud.submissionmovie2.Adapter.MovieAdapter;
-import com.gmail.hmazud.submissionmovie2.Model.MovieModel;
-import com.gmail.hmazud.submissionmovie2.Model.Result;
-import com.gmail.hmazud.submissionmovie2.NetworkService.InterfaceMovie;
-import com.gmail.hmazud.submissionmovie2.NetworkService.ServiceMovie;
+import com.gmail.hmazud.submissionmovie2.adapter.MovieAdapter;
+import com.gmail.hmazud.submissionmovie2.model.Result;
+import com.gmail.hmazud.submissionmovie2.network.ServiceMovie;
 
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

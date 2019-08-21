@@ -10,14 +10,10 @@ import android.support.v7.widget.RecyclerView;
 
 import com.gmail.hmazud.favorite.adapter.FavoriteAdapter;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import static com.gmail.hmazud.favorite.provider.DatabaseContract.CONTENT_URI;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.rv_favorite)
     RecyclerView rv_favorite;
 
     private Cursor list;
@@ -27,9 +23,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
-        setupList();
+        rv_favorite = findViewById(R.id.rv_favorite);
+
+        adapter = new FavoriteAdapter(list);
+        rv_favorite.setLayoutManager(new LinearLayoutManager(this));
+        rv_favorite.addItemDecoration(new DividerItemDecoration(rv_favorite.getContext(), DividerItemDecoration.VERTICAL));
+        rv_favorite.setAdapter(adapter);
+
         new loadDataAsync().execute();
     }
 
@@ -37,13 +38,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         new loadDataAsync().execute();
-    }
-
-    private void setupList() {
-        adapter = new FavoriteAdapter(list);
-        rv_favorite.setLayoutManager(new LinearLayoutManager(this));
-        rv_favorite.addItemDecoration(new DividerItemDecoration(rv_favorite.getContext(), DividerItemDecoration.VERTICAL));
-        rv_favorite.setAdapter(adapter);
     }
 
     private class loadDataAsync extends AsyncTask<Void, Void, Cursor> {

@@ -8,14 +8,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import static android.provider.BaseColumns._ID;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_BACKDROP;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_OVERVIEW;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_POSTER;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_RELEASE_DATE;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_TITLE;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_VOTE;
 import static com.gmail.hmazud.favorite.provider.DatabaseContract.getColumnInt;
 import static com.gmail.hmazud.favorite.provider.DatabaseContract.getColumnString;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_BACKDROP;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_OVERVIEW;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_POSTER;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_RELEASE_DATE;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_TITLE;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_VOTE;
 
 public class FavoriteModel implements Parcelable {
 

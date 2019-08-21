@@ -1,10 +1,9 @@
-package com.gmail.hmazud.submissionmovie2.NetworkService;
+package com.gmail.hmazud.submissionmovie2.network;
 
-import com.gmail.hmazud.submissionmovie2.Model.Result;
+import com.gmail.hmazud.submissionmovie2.model.Result;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface InterfaceMovie {

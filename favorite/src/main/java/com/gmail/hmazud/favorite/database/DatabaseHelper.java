@@ -4,14 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_BACKDROP;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_ID;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_OVERVIEW;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_POSTER;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_RELEASE_DATE;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_TITLE;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.COLUMN_VOTE;
-import static com.gmail.hmazud.favorite.provider.FavoriteColumns.TABLE_NAME;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_BACKDROP;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_ID;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_OVERVIEW;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_POSTER;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_RELEASE_DATE;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_TITLE;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.COLUMN_VOTE;
+import static com.gmail.hmazud.favorite.database.FavoriteColumns.TABLE_NAME;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

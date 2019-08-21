@@ -1,4 +1,4 @@
-package com.gmail.hmazud.submissionmovie2.Model;
+package com.gmail.hmazud.submissionmovie2.model;
 
 import java.util.List;
 

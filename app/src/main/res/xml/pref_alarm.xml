@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Notification">
+
+        <!-- A 'parent' preference, which enables/disables child preferences (below)
+             when checked/unchecked. -->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/dailyRemind"
+            android:title="Reminder"
+            android:summary="Turn On/Off Apps Movie Reminder"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/upcomingRemind"
+            android:title="Movie Release"
+            android:summary="Turn On/Off Movie Release Notification"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/action_settings">
+        <Preference
+            android:key="@string/changeLang"
+            android:summary="@string/chg_lang"
+            android:title="@string/chg_lang" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

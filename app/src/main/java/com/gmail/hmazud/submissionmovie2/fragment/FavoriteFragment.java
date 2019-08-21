@@ -1,8 +1,7 @@
-package com.gmail.hmazud.submissionmovie2.Fragment;
+package com.gmail.hmazud.submissionmovie2.fragment;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,28 +11,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gmail.hmazud.submissionmovie2.Adapter.FavoriteAdapter;
+import com.gmail.hmazud.submissionmovie2.adapter.FavoriteAdapter;
 import com.gmail.hmazud.submissionmovie2.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 import static com.gmail.hmazud.submissionmovie2.provider.DatabaseContract.CONTENT_URI;
 
 public class FavoriteFragment extends Fragment {
 
     private Context context;
-    private Unbinder unbinder;
 
-    @BindView(R.id.rv_fav)
     RecyclerView rv_favorite;
 
     private Cursor list;
     private FavoriteAdapter favoriteAdapter;
 
     public FavoriteFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -43,9 +36,12 @@ public class FavoriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         context = view.getContext();
 
-        unbinder = ButterKnife.bind(this, view);
+        rv_favorite = view.findViewById(R.id.rv_fav);
 
-        setupList();
+        favoriteAdapter = new FavoriteAdapter(list);
+        rv_favorite.setLayoutManager(new LinearLayoutManager(context));
+        rv_favorite.setAdapter(favoriteAdapter);
+
         new loadDataAsync().execute();
 
         return view;
@@ -54,19 +50,13 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         new loadDataAsync().execute();
-    }
-
-    private void setupList() {
-        favoriteAdapter = new FavoriteAdapter(list);
-        rv_favorite.setLayoutManager(new LinearLayoutManager(context));
-        rv_favorite.setAdapter(favoriteAdapter);
     }
 
     private class loadDataAsync extends AsyncTask<Void, Void, Cursor> {
